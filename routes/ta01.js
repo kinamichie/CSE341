@@ -12,6 +12,9 @@ router.get('/', (req, res, next) => {
     // HTML page is written
     res.write('<html>');
     res.write('<head><title>Hello Browser!</Title></head>');
+    res.write('<style>');
+    res.write('body { background-color: #8e9aaf} h1 {padding: 1em; text-align: center;} a {list-style-type: none; color: black; text-decoration: none; margin-left: 2em;} a:hover {color: white;}');
+    res.write('</style>');
     res.write('<body>');
     res.write('<h1>Welcome to my world!</h1>');
     // navigation to your activities endpoint.
@@ -20,7 +23,9 @@ router.get('/', (req, res, next) => {
     // These are navigation links for the stretch challenges
     res.write('<a href="ta01/stretch-1">Stretch 1 (CSS)</a></br>');
     res.write('<a href="ta01/stretch-2">Stretch 2 (Write Form input to text input)</a></br>');
+    res.write('<a href="ta01/activities">My Stretch 2 (Write Form input to text input)</a></br>');
     res.write('<a href="ta01/stretch-3">Stretch 3 (Add two number inputs together)</a></br>');
+    res.write('<a href="ta01/add-activity">My Stretch 3 (Write Form input to text input)</a></br>');
     res.write('</body>');
     res.write('</html>');
     return res.end(); // Return so you don't execute remaining code outside of if statement
@@ -37,8 +42,8 @@ router.get('/activities', (req, res, next) => {
     }
     res.write('</ul>');
     // Form for "./add-activity".
-    res.write('<form action="./add-activity" method="POST">');
-    res.write('<input type="text" name="newActivity">');
+    res.write('<form action="./activities" method="POST">');
+    res.write('<input type="text" name="message">');
     res.write('<button type="submit">Submit</button>');
     res.write('</form>');
     // End tags
@@ -46,24 +51,63 @@ router.get('/activities', (req, res, next) => {
     res.write('</html>');
     return res.end(); // Return so you don't execute remaining code outside of if statement
 });
+router.post("/activities", (req, res, next) => {
+    //console.log();
+    const body = [];
+        req.on('data', chunk => {
+            console.log(chunk);
+            body.push(chunk);        
+});
+return req.on('end', () => {
+    const parsedBody = Buffer.concat(body).toString();
+    console.log(parsedBody);
+    const message = parsedBody.split('=')[1]; 
+    console.log(message);
+    fs.writeFile('activities.txt', message, err => {
+        res.statusCode = 302;
+         res.setHeader('Location', '/');
+        return res.end();   
+    });
+
+}); 
+}); 
+
+
 
 // CORE CHALLENGE 3 -
-router.post('/add-activity', (req, res, next) => {
+router.get('/add-activity', (req, res, next) => {
+    res.write('<html');
+    res.write('<body>');
+    res.write('<form action="/add-activity" method="POST">');
+    res.write('First Number: <input name="firstNumber" type="number"> + ');
+    res.write('Second Number: <input name="secondNumber" type="number">');
+    res.write('<button type="submit">Submit</button>');
+    res.write('</form>');
+    res.write('</body>');
+    res.write('</html>');
+    return res.end();
+});
+router.post("/activities", (req, res, next) => {
+    //console.log();
     const body = [];
-    req.on('data', (chunk) => {
-        body.push(chunk);
-    });
-    return req.on('end', () => {
-        const parsedBody = Buffer.concat(body).toString();
-        const newActivity = parsedBody.split('=')[1];
-        // Console log seen in terminal, may be encoded, but isn't important for now
-        console.log(newActivity);
-        activities.push(newActivity);
+        req.on('data', chunk => {
+            console.log(chunk);
+            body.push(chunk);        
+});
+console.log(body);
 
-        // Remain on './activities' url.
-        res.writeHead(302, {'Location': 'activities'});
-        res.end();
+return req.on('end', () => {
+    let parsedBody = Buffer.concat(body).toString();
+    console.log(parsedBody);
+    const message = parsedBody.split('=')[1]; 
+    console.log(message);
+    fs.writeFile('activities.txt', message, err => {
+        res.statusCode = 302;
+         res.setHeader('Location', '/');
+        return res.end();   
     });
+
+}); 
 });
 
 /***************************************************************************
@@ -91,6 +135,7 @@ router.get("/stretch-1", (req, res, next) => {
 
     return res.end();
 });
+
 
 // STRETCH CHALLENGE 2 - Write to file.
 router.get("/stretch-2", (req, res, next) => {
