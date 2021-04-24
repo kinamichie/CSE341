@@ -1,5 +1,7 @@
 const path = require('path');
 
+const fs = require('fs');
+
 const express = require('express');
 
 const router = express.Router();
@@ -25,7 +27,25 @@ router.get('/', (req, res, next) => {
 router.post('/create-user', (req, res, next) => {
     console.log(req.body);
     res.redirect('/users');
-});
+    const body = [];
+    req.on('data', chunk => {
+        body.push(chunk);
+                    
+    });
+    return req.on('end', () => {
+        const parsedBody = Buffer.concat(body).toString();
+        const message = parsedBody.split('=')[1]; 
+        console.log(message);
+        fs.writeFile('users.txt', message, err => {
+            res.statusCode = 302;
+             res.writeHead('Location', '/users');             
+            return res.end();   
+        });
+    
+    }); 
+    }); 
+    
+
 const people = ['Fred', "Harry", "Jane", "Mary"];
 router.get('/users', (req, res, next) => {
     //console.log('users');
