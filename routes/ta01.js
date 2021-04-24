@@ -56,7 +56,8 @@ router.post("/activities", (req, res, next) => {
     const body = [];
         req.on('data', chunk => {
             console.log(chunk);
-            body.push(chunk);        
+            body.push(chunk);
+            console.log(req.body);        
 });
 return req.on('end', () => {
     const parsedBody = Buffer.concat(body).toString();
