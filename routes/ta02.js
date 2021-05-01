@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 
 let users = ['Eugene', 'Christine', 'Yu-Chun'];
-let errorMessage = false;
+let errorMessage = '';
 
 router.get('/',(req, res, next) => {
     res.render('pages/ta02', { 

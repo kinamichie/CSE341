@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prove02</title>
+    <style>
+        body {
+            background-color: rgb(148, 216, 163);
+        }
+        h1, form, li {
+            margin-left: 10%;
+        }
+        form label, li {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        form input, textarea {
+            border: 2px solid black;
+        }
+        button {
+            margin: 1em 0;
+            background-color: white;
+            width: 8em;
+            padding: .25em;
+        }
+        button:hover, button:active {
+            background-color: black;
+            color: white;
+        }
+        li {
+            padding: 1em;
+        }
+    </style>
+</head>
+<body>
+    <p><%= errorMessage %></p>
+    <h1>Books and Their Summaries</h1>
+    <div class="container">
+        <form method="POST" action="/add-book">
+          <label for="title">Book Title</label><br>
+          <input type="text" name="title" id="title" required><br><br>
+          <label for="summary">Book Summary</label><br>
+          <input type="text" name="summary" id="summary" required><br>
+          <button type="submit">Add Book</button>
+        </form>
+    </div>
+    <ul>
+        <% books.forEach(book => { %>
+            <li>Title of Book: <%= book.title %> <br> Summary of Book: <%= book.summary %>  </li>
+           <% }) %>
+    </ul>
+</body>
+</html>
+
+
