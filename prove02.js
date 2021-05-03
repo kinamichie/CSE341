@@ -2,7 +2,7 @@ const path = require('path');
 const express = require('express'); 
 const bodyParser = require('body-parser');
 
-const userRoute = require('./routes/prove02-routes');
+const userRoute = require('./routes/prove02');
 
 const app = express();
 
