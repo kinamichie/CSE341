@@ -4,17 +4,15 @@ Kina Michie
 
 3. The pages are there and the username is going into the console and re-directing to the User page.
 Files are set up in a "module" status as the prove01-routes is transferring the data needed to the prove01.js which acts like a controller.
-The username is showing up in the console after it is entered.
+The username is showing up in the console after it is entered and on the User page.
 
-4. I have not been able to get the username to show on the page.
+4. All parts of the assignment are working.
 
-5. The "coolest thing I learned while completing this assignment was how it is so similar to PHP module set up.
-It gives me hope that I will do alright in this class since I loved and understood PHP.
+5. The "coolest" thing I learned while completing this assignment was how I had not forgotten much of it since I had to drop the class spring semester. I had deleted all of my assignments I had done before and started over. 
 
-6. Clearer instructions are always welcome. The video learning was a huge help.
+6. I felt that the directions were much clearer than the last time I took the class. I don't think anything needs to change.
 
-7. I felt that I accomplished 4-"meets requirements". I felt I understood how things worked. I just ran out of time to figure the last part out.
-I just got my second COVID shot and an too wiped out accomplish that right now.
+7. I felt that I accomplished a 5 this time. I took the time to do the stretch activity and have it working. I also added some CSS to make it look appealing instead of just black and white. 
 
-8. All three paths that were in the assignment are there and they are all working properly. The username displays in the console.
+8. All three paths that were in the assignment are there and they are all working properly. The username displays in the console and on the User page.
 
