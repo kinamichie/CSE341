@@ -3,7 +3,8 @@
 const express = require('express');
 const router = express.Router();
 
-let users = ['Eugene', 'Christine', 'Yu-Chun'];
+
+let users = ['Larry', 'Curly', 'Mo'];
 let errorMessage = '';
 
 router.get('/',(req, res, next) => {
@@ -38,6 +39,5 @@ router.post( '/removeUser', (req, res, next) => {
     }
     res.redirect('/ta02/', 302);
 });
-
 
 module.exports = router;
